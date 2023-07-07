@@ -77,15 +77,15 @@ const Modal = ({
             ">
                 <div className="
                     relative
-                    w-full
+                    w-[90vw]
+                    h-[90vh]
                     md:w-4/6
                     lg:w-3/6
                     xl:w-2/5
-                    my-6
                     mx-auto
-                    h-full
+                    mt-6
                     overflow-y-auto
-                ">
+                    ">
                     {/* Content */}
                     <div
                         className={`
