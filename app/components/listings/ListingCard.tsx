@@ -15,7 +15,7 @@ interface ListingCardProps {
     disabled?: boolean;
     onAction?:(id:string)=>void;
     actionLabel?:string;
-    actionId: string;
+    actionId?: string;
     currentUser?:User | null;
 }
 
