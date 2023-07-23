@@ -13,6 +13,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 import { Range } from "react-date-range";
+import { ReservationWithListing } from "@/app/types";
 
 const initialDateRange = {
     startDate: new Date(),
@@ -20,8 +21,9 @@ const initialDateRange = {
     key:'selection'
 }
 
+
 interface ListingClientProps {
-    reservations?: Reservation[];
+    reservations?: ReservationWithListing[];
     listing: Listing & {
         user: User;
     };
@@ -32,7 +34,7 @@ interface ListingClientProps {
 const ListingClient = ({
     listing,
     currentUser,
-    reservations = []
+    reservations=[]
 }:ListingClientProps) => {
 
     const loginModal = useLoginModal();
@@ -41,7 +43,7 @@ const ListingClient = ({
     const disabledDates = useMemo(()=>{
         let dates: Date[] = [];
 
-        reservations.forEach(reservation=> {
+        reservations?.forEach(reservation=> {
             const range = eachDayOfInterval({
                 start: new Date(reservation.startDate),
                 end: new Date(reservation.endDate)
@@ -66,13 +68,13 @@ const ListingClient = ({
         axios.post('/api/reservations',{
              totalPrice,
              startDate: dateRange.startDate,
-             endDaate: dateRange.endDate,
+             endDate: dateRange.endDate,
              listingId: listing.id
         })
             .then(()=>{
                 toast.success('Listing reserved!')
                 setDateRange(initialDateRange)
-                router.refresh();
+                router.push('/trips');
             })
             .catch(()=>{
                 toast.error('Something went wrong.')
