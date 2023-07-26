@@ -131,6 +131,7 @@ const ListingClient = ({
                             guestCount={listing.guestCount}
                             bathroomCount={listing.bathroomCount}
                             locationValue={listing.locationValue}
+                            roomCount={listing.roomCount}
                         />
 
                         <div className="order-first mb-10 md:order-last md:col-span-3">
